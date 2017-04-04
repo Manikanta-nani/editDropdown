@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <style type="">
+        .dropdown.dropdown-scroll .dropdown-menu {
+    max-height: 200px;
+    width: 60px;
+    overflow: auto;
+}
+.search-control {
+    padding: 5px 10px;
+}
+            </style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    </head>
+
+<body>
+
+<p>Try to change the names.</p>
+<div class="dropdown dropdown-scroll" ng-app="app">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Select <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" ng-controller="ListCtrl">
+        <li role="presentation">
+            <div class="input-group input-group-sm search-control"> <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+</span>
+                <input type="text" class="form-control" placeholder="Query" ng-model="query"></input>
+            </div>
+        </li>
+        <li role="presentation" ng-repeat='item in items | filter:query'> <a href="#"> {{item.name}} </a>
+        </li>
+    </ul>
+</div>
+
+<script>
+var phonecatApp = angular.module('app', []);
+
+phonecatApp.controller('ListCtrl', function ($scope) {
+    $scope.items = [{
+        'name': 'Item 1'
+    }, {
+        'name': 'Item 2'
+    }, {
+        'name': 'Account 3'
+    }, {
+        'name': 'Account 4'
+    }, {
+        'name': 'Item 5'
+    }, {
+        'name': 'Item 6'
+    }, {
+        'name': 'User 7'
+    }, {
+        'name': 'User 8'
+    }, {
+        'name': 'Item 9'
+    }, {
+        'name': 'Item 10'
+    }, {
+        'name': 'Item 11'
+    }, {
+        'name': 'Item 12'
+    }, {
+        'name': 'Item 13'
+    }, {
+        'name': 'Item 14'
+    }, {
+        'name': 'User 15'
+    }, {
+        'name': 'User 16'
+    }, {
+        'name': 'Person 17'
+    }, {
+        'name': 'Person 18'
+    }, {
+        'name': 'Person 19'
+    }, {
+        'name': 'Item 20'
+    }, ];
+});
+
+// jQuery
+$('.dropdown-menu').find('input').click(function (e) {
+    e.stopPropagation();
+});
+</script>
+
+</body>
+</html>
