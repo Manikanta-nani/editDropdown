@@ -2,6 +2,7 @@
 <html>
     <head>
          <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/xeditable.min.css"/>
         <style type="">
         .dropdown.dropdown-scroll .dropdown-menu {
     max-height: 200px;
@@ -18,16 +19,17 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    </head>
+  <script src="js/xeditable.min.js"></script>
+</head>
 
 <body>
 
 <p>Try to change the names.</p>
 <div class="dropdown dropdown-scroll" ng-app="app">
+    <div ng-controller="ListCtrl"> 
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Select <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" ng-controller="ListCtrl">
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
         <li role="presentation">
             <div class="input-group input-group-sm search-control"> <span class="input-group-addon">
                     <span class="glyphicon glyphicon-search"></span>
@@ -38,11 +40,16 @@
         <li role="presentation" ng-repeat='item in items | filter:query'> <a href="#"> {{item.name}} </a>
         </li>
     </ul>
+    editable link <br/>
+    <a href="#" editable-text="user.name">{{ user.name || "empty" }}</a>
+</div>
 </div>
 
 <script>
-var phonecatApp = angular.module('app', []);
-
+var phonecatApp = angular.module('app', ["xeditable"]);
+phonecatApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
 phonecatApp.controller('ListCtrl', function ($scope) {
     $scope.items = [{
         'name': 'Item 1'
@@ -85,6 +92,10 @@ phonecatApp.controller('ListCtrl', function ($scope) {
     }, {
         'name': 'Item 20'
     }, ];
+ $scope.user = {
+    name: 'editable options'
+  };  
+
 });
 
 // jQuery
